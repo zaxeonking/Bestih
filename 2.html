@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animasi Bintang dan Love</title>
+  <style>
+    body {
+      margin: 0;
+      background: white;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .typing-text {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 24px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid black;
+      width: 0;
+      animation: typing 1.5s steps(40, end) forwards, blink 1s infinite;
+      color: black;
+      max-width: 90vw;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: transparent }
+      50% { border-color: black }
+    }
+
+    .star, .love {
+      position: absolute;
+      animation: float 10s linear infinite;
+      opacity: 0.8;
+    }
+
+    .star::before {
+      content: "★";
+      color: gold;
+    }
+
+    .love::before {
+      content: "♥";
+      color: red;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body onclick="window.location.href='3.html'">
+  <div class="container">
+    <div class="center-text">
+      <div class="typing-text">Lagiii dong😁😁
+      </div>
+    </div>
+
+    <!-- Tambahkan elemen bintang dan love -->
+    <script>
+      const container = document.querySelector('.container');
+
+      for (let i = 0; i < 30; i++) {
+        const elem = document.createElement('div');
+        elem.className = Math.random() > 0.5 ? 'star' : 'love';
+        elem.style.left = Math.random() * 100 + 'vw';
+        elem.style.animationDuration = 5 + Math.random() * 5 + 's';
+        elem.style.fontSize = (12 + Math.random() * 20) + 'px';
+        container.appendChild(elem);
+      }
+    </script>
+  </div>
+</body>
+</html>
